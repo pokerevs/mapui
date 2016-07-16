@@ -22,9 +22,12 @@ var autoloadOptions = {
 var gmo = L.geoJson({"geometry": {"coordinates": [-118, 34], "type": "Point"}, "id": 0, "properties": {}, "type": "Feature"}, autoloadOptions).addTo(map);
 
 var loaded = true;
-
-map.fitBounds(gmo.getBounds(), {maxZoom: 16});
-map.locate({setView : true});
+if ("geolocation" in navigator){
+	map.locate({setView : true});
+}
+else {
+	map.fitBounds(gmo.getBounds(), {maxZoom: 16});
+}
 
 function checkboxFilter(feature) {
   if (!loaded) {
