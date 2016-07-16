@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+<title>Get Map Objects</title>
+<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+<link rel="stylesheet" href="css/leaflet.css" />
+
+<style>
+  body { margin:0; padding:0; }
+  #map { position:absolute; top:0; bottom:0; width:100%; }
+  .filter-ui {
+    background:#fff;
+    position:absolute;
+    top:10px;
+    right:10px;
+    z-index:100;
+    padding:10px;
+    border-radius:3px;
+  }
+</style>
+
+
+</head>
+<body>
+
+  <nav id='filters' class='filter-ui'>
+  <div><input type=checkbox id='pokestop' checked=true/><label for='pokestop'>PokeStop</label></div>
+  <div><input type=checkbox id='gym' checked=true/><label for='gym'>Gym</label></div>
+  <div><input type=checkbox id='spawn' checked=true/><label for='spawn'>Spawn</label></div>
+  <div><input type=checkbox id='wild' checked=true/><label for='wild'>Wild Pokemon</label></div>
+  <div><input type=checkbox id='nearby' checked=true/><label for='nearby'>Nearby Pokemon</label></div>
+
+  </nav>
+<div id='map'></div>
+<script src="js/leaflet.js"></script>
+<script src='js/leaflet-providers.js'></script>
+<script src='js/env.js'></script>
+<script src="js/leaflet.uGeoJSON.js"></script>
+<script src="js/index.js"></script>
+</body>
+</html>
