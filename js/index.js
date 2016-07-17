@@ -27,13 +27,13 @@ var autoloadOptions = {
 
 var gj = L.uGeoJSONLayer({endpoint:endpoint_name, debug: true, usebbox: true, after: newData}, autoloadOptions).addTo(map);
 
-
 var initialViewSet = false;
-if ("geolocation" in navigator){
+if(window.location.hash) {
+  initialViewSet = true;
+} else if ("geolocation" in navigator){
   //This will ask the user to use their location data.
-	map.locate({setView : true});
+  map.locate({setView : true});
 }
-
 //If this user says yes, and its successful
 function onLocationFound(e) {
   initialViewSet = true;
