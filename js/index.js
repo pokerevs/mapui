@@ -92,7 +92,15 @@ function customStyle(f, latlon) {
     } else if (properties.type == 'wild' || properties.type == 'catchable') {
       marker.setIcon(pokemonIcon);
     } else if (properties.type == 'gym') {
-      marker.setIcon(gymIcon);
+        if (properties.title == "Blue Gym") {
+            marker.setIcon(blueGymIcon);
+        } else if (properties.title == "Red Gym") {
+            marker.setIcon(redGymIcon);
+        } else if (properties.title == "Yellow Gym") {
+            marker.setIcon(yellowGymIcon);
+        } else {
+          marker.setIcon(neutralGymIcon);
+        }
     }
 
     return marker;
@@ -113,8 +121,26 @@ var pokestopIcon = L.icon({
     popupAnchor:  [-3, -58] // point from which the popup should open relative to the iconAnchor
 });
 
-var gymIcon = L.icon({
+var blueGymIcon = L.icon({
     iconUrl: 'img/arena_blue.png',
+    iconSize:     [45, 48], // size of the icon
+    iconAnchor:   [22, 48], // point of the icon which will correspond to marker's location
+    popupAnchor:  [-3, -58] // point from which the popup should open relative to the iconAnchor
+});
+var yellowGymIcon = L.icon({
+    iconUrl: 'img/arena_yellow.png',
+    iconSize:     [45, 48], // size of the icon
+    iconAnchor:   [22, 48], // point of the icon which will correspond to marker's location
+    popupAnchor:  [-3, -58] // point from which the popup should open relative to the iconAnchor
+});
+var redGymIcon = L.icon({
+    iconUrl: 'img/arena_red.png',
+    iconSize:     [45, 48], // size of the icon
+    iconAnchor:   [22, 48], // point of the icon which will correspond to marker's location
+    popupAnchor:  [-3, -58] // point from which the popup should open relative to the iconAnchor
+});
+var neutralGymIcon = L.icon({
+    iconUrl: 'img/arena_red.png',
     iconSize:     [45, 48], // size of the icon
     iconAnchor:   [22, 48], // point of the icon which will correspond to marker's location
     popupAnchor:  [-3, -58] // point from which the popup should open relative to the iconAnchor
