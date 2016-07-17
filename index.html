@@ -5,35 +5,45 @@
 <title>Get Map Objects</title>
 <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
 <link rel="stylesheet" href="css/leaflet.css" />
-
-<style>
-  body { margin:0; padding:0; }
-  #map { position:absolute; top:0; bottom:0; width:100%; }
-  .filter-ui {
-    background:#fff;
-    position:absolute;
-    top:10px;
-    right:10px;
-    z-index:100;
-    padding:10px;
-    border-radius:3px;
-  }
-</style>
-
+<link rel="stylesheet" href="css/index.css" />
 
 </head>
 <body>
-<div id="middle" style="z-index: 100;top: 50%;position: absolute;text-align: center;width: 100%;visibility: hidden;">
+<div id="middle">
     <h1>Please zoom in further to view data</h1>
     <p> Hint, try <a href="#15/37.3347/-121.9008">San Jose</a></p>
 </div>
 
   <nav id='filters' class='filter-ui'>
-  <div><input type=checkbox id='pokestop' checked=true/><label for='pokestop'>PokeStop</label></div>
-  <div><input type=checkbox id='gym' checked=true/><label for='gym'>Gym</label></div>
-  <div><input type=checkbox id='spawn' checked=true/><label for='spawn'>Spawn</label></div>
-  <div><input type=checkbox id='wild' checked=true/><label for='wild'>Wild Pokemon</label></div>
-  <div><input type=checkbox id='nearby' checked=true/><label for='nearby'>Nearby Pokemon</label></div>
+  <div>
+    <input type=checkbox id='pokestop' checked=true/>
+    <label for='pokestop'>PokeStop</label>
+    <img class="icon" src="img/pokestop.png"/>
+    <img class="icon" src="img/pokestoppink.png"/>
+  </div>
+  <div>
+    <input type=checkbox id='gym' checked=true/>
+    <label for='gym'>Gym</label>
+    <img class="icon" src="img/arena_white.png"/>
+    <img class="icon" src="img/arena_red.png"/>
+    <img class="icon" src="img/arena_blue.png"/>
+    <img class="icon" src="img/arena_yellow.png"/>
+  </div>
+  <div>
+    <input type=checkbox id='spawn' checked=true/>
+    <label for='spawn'>Spawn</label>
+    <img class="icon" src="img/pokestop.png"/>
+  </div>
+  <div>
+    <input type=checkbox id='wild' checked=true/>
+    <label for='wild'>Wild Pokemon</label>
+    <img class="icon" src="img/pokemon.png"/>
+  </div>
+  <div>
+    <input type=checkbox id='nearby' checked=true/>
+    <label for='nearby'>Nearby Pokemon</label>
+    <img class="icon" src="img/pokemon.png"/>
+  </div>
 
   </nav>
 <div id='map'></div>

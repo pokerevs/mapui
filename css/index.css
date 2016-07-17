@@ -1,0 +1,28 @@
+body { margin:0; padding:0; }
+#map { position:absolute; top:0; bottom:0; width:100%; }
+.filter-ui {
+  background:#fff;
+  position:absolute;
+  top:10px;
+  right:10px;
+  z-index:100;
+  padding:10px;
+  border-radius:3px;
+}
+
+#middle {
+  z-index: 100;
+  top: 50%;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  visibility: hidden;
+}
+
+.filter-ui label {
+  line-height: 24px;
+}
+.icon {
+  height: 16px;
+  width: 16px;
+}
