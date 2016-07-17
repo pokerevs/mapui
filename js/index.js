@@ -88,13 +88,12 @@ function customStyle(f, latlon) {
     var marker = simplestyle(f, latlon);
     var properties = f.properties;
 
-    if (properties.type == 'pokestop' && properties.lure) {
-      f.properties['marker-color'] = '800080';
-      marker = simplestyle(f, latlon);
-    }
-
     if (properties.type == 'pokestop') {
-      marker.setIcon(pokestopIcon);
+      if(properties.lure){
+          marker.setIcon(pokestopLureIcon);
+      } else {
+          marker.setIcon(pokestopIcon);
+      }
     } else if (properties.type == 'wild' || properties.type == 'catchable') {
       marker.setIcon(pokemonIcon);
     } else if (properties.type == 'gym') {
@@ -120,6 +119,12 @@ function showMiddle(){
     }
 
 }
+var pokestopLureIcon = L.icon({
+    iconUrl: 'img/pokestoppink.png',
+    iconSize:     [32, 48], // size of the icon
+    iconAnchor:   [16, 48], // point of the icon which will correspond to marker's location
+    popupAnchor:  [-3, -58] // point from which the popup should open relative to the iconAnchor
+});
 var pokestopIcon = L.icon({
     iconUrl: 'img/pokestop.png',
     iconSize:     [32, 48], // size of the icon
@@ -146,7 +151,7 @@ var redGymIcon = L.icon({
     popupAnchor:  [-3, -58] // point from which the popup should open relative to the iconAnchor
 });
 var neutralGymIcon = L.icon({
-    iconUrl: 'img/arena_red.png',
+    iconUrl: 'img/arena_white.png',
     iconSize:     [45, 48], // size of the icon
     iconAnchor:   [22, 48], // point of the icon which will correspond to marker's location
     popupAnchor:  [-3, -58] // point from which the popup should open relative to the iconAnchor
