@@ -39,6 +39,7 @@ function newData(geojson) {
 	  map.fitBounds(gj.getBounds(), {maxZoom: 16});
     initialViewSet = true;
   }
+  showMiddle();
 }
 
 function checkboxFilter(feature) {
@@ -97,6 +98,14 @@ function customStyle(f, latlon) {
     return marker;
 }
 
+function showMiddle(){
+    if(map.getZoom() < 10){
+        document.getElementById("middle").style.visibility = "initial"
+    } else {
+        document.getElementById("middle").style.visibility = "hidden"
+    }
+
+}
 var pokestopIcon = L.icon({
     iconUrl: 'img/pokestop.png',
     iconSize:     [32, 48], // size of the icon
