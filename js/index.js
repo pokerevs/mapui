@@ -17,6 +17,12 @@ var autoloadOptions = {
   onEachFeature: function (feature, layer) {
     layer.bindPopup(feature.properties.title);
   }
+  layer.on('mouseover', function (e) {
+    this.openPopup();
+  });
+  layer.on('mouseout', function (e) {
+    this.closePopup();
+  });
 }
 
 var gj = L.uGeoJSONLayer({endpoint:endpoint_name, debug: true, usebbox: true, after: newData}, autoloadOptions).addTo(map);
