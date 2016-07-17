@@ -1,6 +1,6 @@
 //have an env.js that contains your endpoint, named endpoint_name
 var map = L.map('map');
-
+var hash = new L.Hash(map);
 L.tileLayer.provider('OpenStreetMap.Mapnik', {retina: true}).addTo(map);
 
 var filters = document.getElementById('filters');
