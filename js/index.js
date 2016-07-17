@@ -19,20 +19,29 @@ var autoloadOptions = {
   }
 }
 
-var gmo = L.geoJson({"geometry": {"coordinates": [-118, 34], "type": "Point"}, "id": 0, "properties": {}, "type": "Feature"}, autoloadOptions).addTo(map);
+var gj = L.uGeoJSONLayer({endpoint:endpoint_name, debug: true, usebbox: true, after: newData}, autoloadOptions).addTo(map);
 
-var loaded = true;
+
+var initialViewSet = false;
 if ("geolocation" in navigator){
+  //This will ask the user to use their location data.
 	map.locate({setView : true});
 }
-else {
-	map.fitBounds(gmo.getBounds(), {maxZoom: 16});
+
+//If this user says yes, and its successful
+function onLocationFound(e) {
+  initialViewSet = true;
+}
+
+function newData(geojson) {
+  if (!initialViewSet && geojson.features.length > 0) {
+    //If location data wasn't available, or was denied
+	  map.fitBounds(gj.getBounds(), {maxZoom: 16});
+    initialViewSet = true;
+  }
 }
 
 function checkboxFilter(feature) {
-  if (!loaded) {
-    return true;
-  }
   var box = document.getElementById(feature.properties.type);
   return box == null || box.checked;
 }
@@ -69,24 +78,23 @@ function simplestyle(f, latlon) {
 }
 
 function customStyle(f, latlon) {
-    var icon = simplestyle(f, latlon);
+    var marker = simplestyle(f, latlon);
     var properties = f.properties;
 
     if (properties.type == 'pokestop' && properties.lure) {
       f.properties['marker-color'] = '800080';
-      icon = simplestyle(f, latlon);
+      marker = simplestyle(f, latlon);
     }
 
-    /*
     if (properties.type == 'pokestop') {
-      icon = pokestopIcon;
+      marker.setIcon(pokestopIcon);
     } else if (properties.type == 'wild' || properties.type == 'catchable') {
-      icon = pokemonIcon;
+      marker.setIcon(pokemonIcon);
     } else if (properties.type == 'gym') {
-      icon = gymIcon;
+      marker.setIcon(gymIcon);
     }
-    */
-    return icon;
+
+    return marker;
 }
 
 var pokestopIcon = L.icon({
@@ -109,4 +117,3 @@ var pokemonIcon = L.icon({
     iconAnchor:   [16, 48], // point of the icon which will correspond to marker's location
     popupAnchor:  [-3, -58] // point from which the popup should open relative to the iconAnchor
 });
-var gj = L.uGeoJSONLayer({ endpoint:endpoint_name, debug: true, usebbox: true, instead: gmo}).addTo(map);
