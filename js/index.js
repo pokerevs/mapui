@@ -158,7 +158,25 @@ var neutralGymIcon = L.icon({
 });
 
 var pokemonIcon = L.icon({
-    iconUrl: 'img/pokemon.png',
+    iconUrl: 'img/pokeballmarker.png',
+    iconSize:     [32, 48], // size of the icon
+    iconAnchor:   [16, 48], // point of the icon which will correspond to marker's location
+    popupAnchor:  [-3, -58] // point from which the popup should open relative to the iconAnchor
+});
+var uncommonIcon = L.icon({
+    iconUrl: 'img/greatballmarker.png',
+    iconSize:     [32, 48], // size of the icon
+    iconAnchor:   [16, 48], // point of the icon which will correspond to marker's location
+    popupAnchor:  [-3, -58] // point from which the popup should open relative to the iconAnchor
+});
+var rareIcon = L.icon({
+    iconUrl: 'img/ultraballmarker.png',
+    iconSize:     [32, 48], // size of the icon
+    iconAnchor:   [16, 48], // point of the icon which will correspond to marker's location
+    popupAnchor:  [-3, -58] // point from which the popup should open relative to the iconAnchor
+});
+var legendaryIcon = L.icon({
+    iconUrl: 'img/masterballmarker.png',
     iconSize:     [32, 48], // size of the icon
     iconAnchor:   [16, 48], // point of the icon which will correspond to marker's location
     popupAnchor:  [-3, -58] // point from which the popup should open relative to the iconAnchor
