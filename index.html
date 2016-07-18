@@ -6,16 +6,6 @@
 <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
 <link rel="stylesheet" href="css/leaflet.css" />
 <link rel="stylesheet" href="css/index.css" />
-
-<script>
-function popArea(){
-	var curhash = window.location.hash;
-	coords = curhash.substring(curhash.indexOf("/"))
-	var xhttp = new XMLHttpRequest();
-	xhttp.open("GET", "/api/addToQueue" + coords, true);
-	xhttp.send()
-}
-</script>
 </head>
 <body>
 <div id="middle">
@@ -55,10 +45,23 @@ function popArea(){
     position: fixed;
     z-index: 100;
 ">
-  <button onclick="popArea()" type="button">Populate this Area!</button>
+  <button id="populate-button" onClick="popArea(this)" type="button">Populate this Area!</button>
  
 </div>
 <div id='map'></div>
+<script>
+function popArea(button){
+  var curhash = window.location.hash;
+  coords = curhash.substring(curhash.indexOf("/"))
+  var xhttp = new XMLHttpRequest();
+  xhttp.open("GET", "/api/addToQueue" + coords, true);
+  xhttp.send();
+  button.disabled = true;
+  setTimeout(function() {
+    button.disabled = false;
+  }, 1000 * 20);
+}
+</script>
 <script src="js/leaflet.js"></script>
 <script src='js/leaflet-providers.js'></script>
 <script src='js/env.js'></script>
