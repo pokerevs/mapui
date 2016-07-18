@@ -25,7 +25,7 @@ var autoloadOptions = {
   }
 }
 
-var gj = L.uGeoJSONLayer({endpoint:endpoint_name, debug: true, usebbox: true, after: newData}, autoloadOptions).addTo(map);
+var gj = L.uGeoJSONLayer({endpoint:endpoint_name, debug: (window.location.hostname == 'localhost'), usebbox: true, after: newData}, autoloadOptions).addTo(map);
 
 var initialViewSet = false;
 if(window.location.hash) {
@@ -119,65 +119,35 @@ function showMiddle(){
     }
 
 }
-var pokestopLureIcon = L.icon({
-    iconUrl: 'img/pokestoppink.png',
-    iconSize:     [32, 48], // size of the icon
-    iconAnchor:   [16, 48], // point of the icon which will correspond to marker's location
+
+var GymIcon = L.Icon.extend({
+  options: {
+    iconSize:     [45, 48], // size of the icon
+    iconAnchor:   [22, 48], // point of the icon which will correspond to marker's location
     popupAnchor:  [-3, -58] // point from which the popup should open relative to the iconAnchor
-});
-var pokestopIcon = L.icon({
-    iconUrl: 'img/pokestop.png',
-    iconSize:     [32, 48], // size of the icon
-    iconAnchor:   [16, 48], // point of the icon which will correspond to marker's location
-    popupAnchor:  [-3, -58] // point from which the popup should open relative to the iconAnchor
+  }
 });
 
-var blueGymIcon = L.icon({
-    iconUrl: 'img/arena_blue.png',
-    iconSize:     [45, 48], // size of the icon
-    iconAnchor:   [22, 48], // point of the icon which will correspond to marker's location
+var PokemonIcon = L.Icon.extend({
+  options: {
+    iconSize:     [32, 48], // size of the icon
+    iconAnchor:   [16, 48], // point of the icon which will correspond to marker's location
     popupAnchor:  [-3, -58] // point from which the popup should open relative to the iconAnchor
-});
-var yellowGymIcon = L.icon({
-    iconUrl: 'img/arena_yellow.png',
-    iconSize:     [45, 48], // size of the icon
-    iconAnchor:   [22, 48], // point of the icon which will correspond to marker's location
-    popupAnchor:  [-3, -58] // point from which the popup should open relative to the iconAnchor
-});
-var redGymIcon = L.icon({
-    iconUrl: 'img/arena_red.png',
-    iconSize:     [45, 48], // size of the icon
-    iconAnchor:   [22, 48], // point of the icon which will correspond to marker's location
-    popupAnchor:  [-3, -58] // point from which the popup should open relative to the iconAnchor
-});
-var neutralGymIcon = L.icon({
-    iconUrl: 'img/arena_white.png',
-    iconSize:     [45, 48], // size of the icon
-    iconAnchor:   [22, 48], // point of the icon which will correspond to marker's location
-    popupAnchor:  [-3, -58] // point from which the popup should open relative to the iconAnchor
+  }
 });
 
-var pokemonIcon = L.icon({
-    iconUrl: 'img/pokeballmarker.png',
-    iconSize:     [32, 48], // size of the icon
-    iconAnchor:   [16, 48], // point of the icon which will correspond to marker's location
-    popupAnchor:  [-3, -58] // point from which the popup should open relative to the iconAnchor
-});
-var uncommonIcon = L.icon({
-    iconUrl: 'img/greatballmarker.png',
-    iconSize:     [32, 48], // size of the icon
-    iconAnchor:   [16, 48], // point of the icon which will correspond to marker's location
-    popupAnchor:  [-3, -58] // point from which the popup should open relative to the iconAnchor
-});
-var rareIcon = L.icon({
-    iconUrl: 'img/ultraballmarker.png',
-    iconSize:     [32, 48], // size of the icon
-    iconAnchor:   [16, 48], // point of the icon which will correspond to marker's location
-    popupAnchor:  [-3, -58] // point from which the popup should open relative to the iconAnchor
-});
-var legendaryIcon = L.icon({
-    iconUrl: 'img/masterballmarker.png',
-    iconSize:     [32, 48], // size of the icon
-    iconAnchor:   [16, 48], // point of the icon which will correspond to marker's location
-    popupAnchor:  [-3, -58] // point from which the popup should open relative to the iconAnchor
-});
+
+var PokestopIcon = PokemonIcon; //Coincidentially the same size
+
+var blueGymIcon = new GymIcon({iconUrl: 'img/arena_blue.png'});
+var redGymIcon = new GymIcon({iconUrl: 'img/arena_red.png'});
+var yellowGymIcon = new GymIcon({iconUrl: 'img/arena_yellow.png'});
+var neutralGymIcon = new GymIcon({iconUrl: 'img/arena_white.png'});
+
+var pokemonIcon = new PokemonIcon({iconUrl: 'img/pokeballmarker.png'});
+var uncommonIcon = new PokemonIcon({iconUrl: 'img/greatballmarker.png'});
+var rareIcon = new PokemonIcon({iconUrl: 'img/ultraballmarker.png'});
+var legendaryIcon = new PokemonIcon({iconUrl: 'img/masterballmarker.png'});
+
+var pokestopLureIcon = new PokestopIcon({iconUrl: 'img/pokestoppink.png'});
+var pokestopIcon = new PokestopIcon({iconUrl: 'img/pokestop.png'});
