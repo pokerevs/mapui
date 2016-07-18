@@ -7,6 +7,15 @@
 <link rel="stylesheet" href="css/leaflet.css" />
 <link rel="stylesheet" href="css/index.css" />
 
+<script>
+function popArea(){
+	var curhash = window.location.hash;
+	coords = curhash.substring(curhash.indexOf("/"))
+	var xhttp = new XMLHttpRequest();
+	xhttp.open("GET", "/api/addToQueue" + coords, true);
+	xhttp.send()
+}
+</script>
 </head>
 <body>
 <div id="middle">
@@ -46,6 +55,14 @@
   </div>
 
   </nav>
+<div id="bottom" style="
+    top: 90%;
+    position: fixed;
+    z-index: 100;
+">
+  <button onclick="popArea()" type="button">Populate this Area!</button>
+ 
+</div>
 <div id='map'></div>
 <script src="js/leaflet.js"></script>
 <script src='js/leaflet-providers.js'></script>
