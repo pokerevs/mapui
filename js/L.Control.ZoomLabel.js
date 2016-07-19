@@ -1,13 +1,14 @@
 L.Control.ZoomLabel = L.Control.extend({
     options: {
-        position: 'bottomleft'
+        position: 'bottomleft',
+        contents: ''
     },
 
     onAdd: function (map) {
         this._container = L.DomUtil.create('div', 'leaflet-control-zoomlabel');
         L.DomEvent.disableClickPropagation(this._container);
         map.on('zoomend', this._onZoomend, this);
-        this._container.innerHTML = map.getZoom();
+        this._setContent(map.getZoom());
         return this._container;
     },
 
@@ -16,7 +17,15 @@ L.Control.ZoomLabel = L.Control.extend({
     },
 
     _onZoomend: function(e) {
-        this._container.innerHTML = e.target._zoom;
+        this._setContent(e.target._zoom);
+    },
+
+    _setContent: function(zoomLevel) {
+        if (this.options.contents.length > 0) {
+          this._container.innerHTML = this.options.contents.replace('{zoom}', zoomLevel);
+        } else {
+          this._container.innerHTML = zoomLevel;
+        }
     }
 });
 
