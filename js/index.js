@@ -57,7 +57,7 @@ function newData(geojson) {
 	  map.fitBounds(gj.getBounds(), {maxZoom: 16});
     initialViewSet = true;
   }
-  showMiddle();
+  showHighZoomMesasge();
 }
 
 function popArea(button) {
@@ -135,13 +135,12 @@ function customStyle(f, latlon) {
     return marker;
 }
 
-function showMiddle(){
+function showHighZoomMesasge(){
     if(map.getZoom() < 10){
-        document.getElementById("middle").style.visibility = "initial"
+        document.getElementById("highzoom").style.visibility = "initial"
     } else {
-        document.getElementById("middle").style.visibility = "hidden"
+        document.getElementById("highzoom").style.visibility = "hidden"
     }
-
 }
 
 var GymIcon = L.Icon.extend({
