@@ -8,6 +8,12 @@ var map = new L.Map('map', {
 var hash = new L.Hash(map);
 L.tileLayer.provider('OpenStreetMap.Mapnik', {retina: true}).addTo(map);
 
+var credctrl = L.controlCredits({
+  image: "./img/logo-40.png",
+  link: "http://pokerev.r3v3rs3.net/",
+  text: "Pokemon Global Map <br/>by PokeRevs"
+}).addTo(map);
+
 var filters = document.getElementById('filters');
 filters.onclick = function() {
   gj.onMoveEnd();
