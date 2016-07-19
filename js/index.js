@@ -180,9 +180,6 @@ var PokestopIcon = L.Icon.extend({
   }
 });
 
-
-var PokestopIcon = PokestopIcon; //Coincidentially the same size
-
 var blueGymIcon = new GymIcon({iconUrl: 'img/arena_blue.png'});
 var redGymIcon = new GymIcon({iconUrl: 'img/arena_red.png'});
 var yellowGymIcon = new GymIcon({iconUrl: 'img/arena_yellow.png'});
