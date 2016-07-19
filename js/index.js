@@ -20,7 +20,6 @@ filters.onclick = function() {
 };
 
 var autoloadOptions = {
-  interval: 10 * 1000,
   style: function(feature) { return feature.properties; },
   pointToLayer: customStyle,
 
@@ -57,6 +56,18 @@ function newData(geojson) {
     initialViewSet = true;
   }
   showMiddle();
+}
+
+function popArea(button) {
+  button.disabled = true;
+  var xhttp = new XMLHttpRequest();
+  var curhash = window.location.hash;
+  coords = curhash.substring(curhash.indexOf("/"))
+  xhttp.open("GET", "/api/addToQueue" + coords, true);
+  xhttp.send();
+  setTimeout(function() {
+    button.disabled = false;
+  }, 1000 * 20);
 }
 
 function checkboxFilter(feature) {

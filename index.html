@@ -10,10 +10,10 @@
 <link rel="stylesheet" href="css/index.css" />
 </head>
 <body>
-<div id="middle">
-    <h1>Please zoom in further to view data</h1>
-    <p> Hint, try <a href="#15/37.3347/-121.9008">San Jose</a></p>
-</div>
+  <div id="middle">
+      <h1>Please zoom in further to view data</h1>
+      <p> Hint, try <a href="#15/37.3347/-121.9008">San Jose</a></p>
+  </div>
 
   <nav id='filters' class='filter-ui'>
   <div>
@@ -42,28 +42,12 @@
   </div>
 
   </nav>
-<div id="bottom" style="
-    top: 90%;
-    position: fixed;
-    z-index: 100;
-">
-  <button id="populate-button" onClick="popArea(this)" type="button">Populate this Area!</button>
- 
-</div>
-<div id='map'></div>
-<script>
-function popArea(button){
-  var curhash = window.location.hash;
-  coords = curhash.substring(curhash.indexOf("/"))
-  var xhttp = new XMLHttpRequest();
-  xhttp.open("GET", "/api/addToQueue" + coords, true);
-  xhttp.send();
-  button.disabled = true;
-  setTimeout(function() {
-    button.disabled = false;
-  }, 1000 * 20);
-}
-</script>
+
+  <div id="bottom">
+    <button id="populate-button" onClick="popArea(this)" type="button">Populate this Area!</button>
+  </div>
+  <div id='map'></div>
+
 <script src="js/leaflet.js"></script>
 <script src='js/leaflet-providers.js'></script>
 <script src="js/Control.FullScreen.js"></script>

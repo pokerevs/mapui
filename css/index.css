@@ -26,3 +26,9 @@ body { margin:0; padding:0; }
   height: 16px;
   width: 16px;
 }
+
+#populate-button {
+  top: 90%;
+  position: fixed;
+  z-index: 100;
+}
