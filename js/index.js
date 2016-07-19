@@ -15,9 +15,15 @@ var populateButton = L.easyButton('<span>Populate this area</span>', function po
   var xhttp = new XMLHttpRequest();
   var curhash = window.location.hash;
   coords = curhash.substring(curhash.indexOf("/"))
+  xhttp.onreadystatechange = function() {
+    if (xhttp.readyState == XMLHttpRequest.DONE) {
+      populateResponse.content(xhttp.responseText).show();
+    }
+  }
   xhttp.open("GET", api_endpoint + "addToQueue" + coords, true);
   xhttp.send();
   setTimeout(function() {
+    populateResponse.hide();
     populateButton.enable();
   }, 1000 * 20);
 }, {position: 'bottomleft'}).addTo(map);
@@ -27,6 +33,8 @@ var credctrl = L.controlCredits({
   link: "http://pokerev.r3v3rs3.net/",
   text: "Pokemon Global Map <br/>by PokeRevs"
 }).addTo(map);
+
+var populateResponse = L.control.window(map, {title:'Server response', content:'', position: 'bottomLeft'});
 
 var filters = document.getElementById('filters');
 filters.onclick = function() {
