@@ -37,7 +37,7 @@ var autoloadOptions = {
   }
 }
 
-var gj = L.uGeoJSONLayer({endpoint:endpoint_name, debug: (window.location.hostname == 'localhost'), usebbox: true, after: newData}, autoloadOptions).addTo(map);
+var gj = L.uCluster({endpoint:endpoint_name, debug: (window.location.hostname == 'localhost'), usebbox: true, after: newData}, autoloadOptions).addTo(map);
 
 var initialViewSet = false;
 if(window.location.hash) {
