@@ -33,7 +33,7 @@ filters.onclick = function() {
   gj.onMoveEnd();
 };
 
-var autoloadOptions = {
+var geoJsonOptions = {
   style: function(feature) { return feature.properties; },
   pointToLayer: customStyle,
 
@@ -49,13 +49,20 @@ var autoloadOptions = {
   }
 }
 
-var gj = L.uCluster({
+var markerOptions = {
   disableClusteringAtZoom: 16
-}, {
-  endpoint:endpoint_name, debug: (window.location.hostname == 'localhost'), usebbox: true, after: newData
-},
-autoloadOptions
-).addTo(map);
+};
+
+var uGeoJsonOptions = {
+  endpoint:endpoint_name,
+  debug: (window.location.hostname == 'localhost'),
+  usebbox: true,
+  after: newData,
+  maxRequests: 2
+  //pollTime: 1000 * 60 * 5 //Considering refreshing data every 5 minutes
+};
+
+var gj = L.uCluster(markerOptions, uGeoJsonOptions, geoJsonOptions).addTo(map);
 
 var initialViewSet = false;
 if(window.location.hash) {
