@@ -21,7 +21,10 @@ L.Control.ZoomLabel = L.Control.extend({
     },
 
     _setContent: function(zoomLevel) {
-        if (this.options.contents.length > 0) {
+        var contents = this.options.contents;
+        if (contents instanceof Function) {
+          this._container.innerHTML = contents(zoomLevel);
+        } else if (this.options.contents.length > 0) {
           this._container.innerHTML = this.options.contents.replace('{zoom}', zoomLevel);
         } else {
           this._container.innerHTML = zoomLevel;

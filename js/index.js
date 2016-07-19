@@ -8,8 +8,17 @@ var map = new L.Map('map', {
     }
 });
 var hash = new L.Hash(map);
-L.control.zoomLabel().addTo(map);
 L.tileLayer.provider('OpenStreetMap.Mapnik', {retina: true}).addTo(map);
+
+function zoomText(zoomLevel) {
+  if(zoomLevel < 10) {
+    return zoomLevel + ": Too much data to display.  Zoom below level 10";
+  } else if (zoomLevel < 16) {
+    return zoomLevel + ": Data clustered below level 16";
+  }
+  return zoomLevel;
+}
+L.control.zoomLabel({contents: zoomText}).addTo(map);
 
 var credctrl = L.controlCredits({
   image: "./img/logo-40.png",
