@@ -1,7 +1,7 @@
 L.UCluster = L.UGeoJSONLayer.extend({
-  initialize: function (uOptions, options) {
+  initialize: function (markerOptions, uOptions, options) {
     L.UGeoJSONLayer.prototype.initialize.call(this, uOptions, options);
-    this.markers = L.markerClusterGroup();
+    this.markers = L.markerClusterGroup(markerOptions);
   },
 
   //Parts of L.FeatureGroup and L.LayerGroup
@@ -33,6 +33,6 @@ L.UCluster = L.UGeoJSONLayer.extend({
   }
 });
 
-L.uCluster = function (uOptions, options) {
-  return new L.UCluster(uOptions, options);
+L.uCluster = function (markerOptions, uOptions, options) {
+  return new L.UCluster(markerOptions, uOptions, options);
 };
