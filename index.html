@@ -1,66 +1,76 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset=utf-8 />
-<title>PokeRev Global Map</title>
-<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-<link rel="stylesheet" href="css/leaflet.css" />
-<link rel="stylesheet" href="css/Control.FullScreen.css" />
-<link rel="stylesheet" href="css/leaflet-control-credits.css" />
-<link rel="stylesheet" href="css/MarkerCluster.Default.css" />
-<link rel="stylesheet" href="css/MarkerCluster.css" />
-<link rel="stylesheet" href="css/easy-button.css" />
-<link rel="stylesheet" href="css/L.Control.Window.css" />
-<link rel="stylesheet" href="css/index.css" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+  
+  <title>PokeRev Global Map</title>
+  
+  <link rel="stylesheet" href="css/leaflet.css" />
+  <link rel="stylesheet" href="css/Control.FullScreen.css" />
+  <link rel="stylesheet" href="css/leaflet-control-credits.css" />
+  <link rel="stylesheet" href="css/MarkerCluster.Default.css" />
+  <link rel="stylesheet" href="css/MarkerCluster.css" />
+  <link rel="stylesheet" href="css/easy-button.css" />
+  <link rel="stylesheet" href="css/L.Control.Window.css" />
+  <link rel="stylesheet" href="css/index.css" />
 </head>
 <body>
   <div id="highzoom">
-      <h1>Please zoom in further to view data</h1>
-      <p> Hint, try <a href="#15/37.3347/-121.9008">San Jose</a></p>
+    <h1>Please zoom in further to view data</h1>
+    <p>Hint, try <a href="#15/37.3347/-121.9008">San Jose</a></p>
   </div>
-
-  <nav id='filters' class='filter-ui'>
-  <div>
-    <input type=checkbox id='pokestop' checked=true/>
-    <label for='pokestop'>PokeStop</label>
-    <img class="icon" src="img/pokestop.png"/>
-    <img class="icon" src="img/pokestoppink.png"/>
-  </div>
-  <div>
-    <input type=checkbox id='gym' checked=true/>
-    <label for='gym'>Gym</label>
-    <img class="icon" src="img/arena_white.png"/>
-    <img class="icon" src="img/arena_red.png"/>
-    <img class="icon" src="img/arena_blue.png"/>
-    <img class="icon" src="img/arena_yellow.png"/>
-  </div>
-  <div>
-    <input type=checkbox id='wild' checked=true/>
-    <label for='wild'>Wild Pokemon</label>
-    <img class="icon" src="img/pokeballmarker.png"/>
-  </div>
-  <div>
-    <input type=checkbox id='nearby' checked=true/>
-    <label for='nearby'>Nearby Pokemon</label>
-    <img class="icon" src="img/pokeballmarker.png"/>
-  </div>
-
+  
+  <nav id="filters" class="filter-ui">
+    <div>
+      <input type="checkbox" id="pokestop" checked />
+      <label for="pokestop">
+        <span class="text">PokeStop</span>
+        <img class="icon pokestop" src="img/pokestop.png" />
+        <img class="icon pokestop" src="img/pokestoppink.png" />
+      </label>
+    </div>
+    <div>
+      <input type="checkbox" id="gym" checked />
+      <label for="gym">
+        <span class="text">Gym</span>
+        <img class="icon gym" src="img/arena_white.png" />
+        <img class="icon gym" src="img/arena_red.png" />
+        <img class="icon gym" src="img/arena_blue.png" />
+        <img class="icon gym" src="img/arena_yellow.png" />
+      </label>
+    </div>
+    <div>
+      <input type="checkbox" id="wild" checked />
+      <label for="wild">
+        <span class="text">Wild Pokemon</span>
+        <img class="icon pokeball" src="img/pokeballmarker.png" />
+      </label>
+    </div>
+    <div>
+      <input type="checkbox" id="nearby" checked />
+      <label for="nearby">
+        <span class="text">Nearby Pokemon</span>
+        <img class="icon pokeball" src="img/pokeballmarker.png" />
+      </label>
+    </div>
   </nav>
-
-  <div id='map'></div>
-
-<script src="js/leaflet.js"></script>
-<script src="//cdn.maptiks.com/maptiks-leaflet.min.js"></script>
-<script src='js/leaflet-providers.js'></script>
-<script src="js/Control.FullScreen.js"></script>
-<script src="js/leaflet.uGeoJSON.js"></script>
-<script src="js/leaflet.markercluster-src.js"></script>
-<script src="js/leaflet-hash.js"></script>
-<script src="js/leaflet-control-credits.js"></script>
-<script src="js/leaflet.uCluster.js"></script>
-<script src="js/easy-button.js"></script>
-<script src="js//L.Control.Window.js"></script>
-<script src='js/env.js'></script>
-<script src="js/index.js"></script>
+  
+  <div id="map"></div>
+  
+  <script src="js/leaflet.js"></script>
+  <script src="//cdn.maptiks.com/maptiks-leaflet.min.js"></script>
+  <script src="js/leaflet-providers.js"></script>
+  <script src="js/Control.FullScreen.js"></script>
+  <script src="js/leaflet.uGeoJSON.js"></script>
+  <script src="js/leaflet.markercluster-src.js"></script>
+  <script src="js/leaflet-hash.js"></script>
+  <script src="js/leaflet-control-credits.js"></script>
+  <script src="js/leaflet.uCluster.js"></script>
+  <script src="js/easy-button.js"></script>
+  <script src="js/L.Control.Window.js"></script>
+  
+  <script src="js/env.js"></script>
+  <script src="js/index.js"></script>
 </body>
 </html>
