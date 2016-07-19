@@ -10,6 +10,18 @@ var map = new L.Map('map', {
 var hash = new L.Hash(map);
 L.tileLayer.provider('OpenStreetMap.Mapnik', {retina: true}).addTo(map);
 
+var populateButton = L.easyButton('<span>Populate this area</span>', function populateCallback() {
+  populateButton.disable();
+  var xhttp = new XMLHttpRequest();
+  var curhash = window.location.hash;
+  coords = curhash.substring(curhash.indexOf("/"))
+  xhttp.open("GET", "/api/addToQueue" + coords, true);
+  xhttp.send();
+  setTimeout(function() {
+    populateButton.enable();
+  }, 1000 * 20);
+}, {position: 'bottomleft'}).addTo(map);
+
 var credctrl = L.controlCredits({
   image: "./img/logo-40.png",
   link: "http://pokerev.r3v3rs3.net/",
@@ -64,18 +76,6 @@ function newData(geojson) {
     initialViewSet = true;
   }
   showHighZoomMesasge();
-}
-
-function popArea(button) {
-  button.disabled = true;
-  var xhttp = new XMLHttpRequest();
-  var curhash = window.location.hash;
-  coords = curhash.substring(curhash.indexOf("/"))
-  xhttp.open("GET", "/api/addToQueue" + coords, true);
-  xhttp.send();
-  setTimeout(function() {
-    button.disabled = false;
-  }, 1000 * 20);
 }
 
 function checkboxFilter(feature) {
