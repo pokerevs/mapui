@@ -22,26 +22,15 @@ L.UCluster = L.UGeoJSONLayer.extend({
   },
 
   clearLayer: function() {
-    console.log("clearLayer");
     this.markers.clearLayer()
     return this;
   },
 
   addTo: function(map) {
-    console.log("addTo");
     map.addLayer(this.markers);
     map.addLayer(this);
     return this;
-  },
-
-  /*
-  _layerAdd: function (e) {
-    console.log("_layerAdd");
-    L.GeoJSON.prototype._layerAdd.call(this, e);
   }
-
-  */
-
 });
 
 L.uCluster = function (uOptions, options) {
