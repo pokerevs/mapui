@@ -1,5 +1,10 @@
 //have an env.js that contains your endpoint, named endpoint_name
-var map = L.map('map');
+var map = new L.Map('map', {
+    fullscreenControl: true,
+    fullscreenControlOptions: {
+      position: 'topleft'
+    }
+});
 var hash = new L.Hash(map);
 L.tileLayer.provider('OpenStreetMap.Mapnik', {retina: true}).addTo(map);
 
