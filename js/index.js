@@ -1,4 +1,6 @@
 //have an env.js that contains your endpoint, named endpoint_name
+maptiks.trackcode='23b927ed-3ff7-43e2-9052-6b00b6d1565b';
+
 var map = new L.Map('map', {
     fullscreenControl: true,
     fullscreenControlOptions: {
