@@ -15,7 +15,7 @@ var populateButton = L.easyButton('<span>Populate this area</span>', function po
   var xhttp = new XMLHttpRequest();
   var curhash = window.location.hash;
   coords = curhash.substring(curhash.indexOf("/"))
-  xhttp.open("GET", api_endpoint + "/api/addToQueue" + coords, true);
+  xhttp.open("GET", api_endpoint + "addToQueue" + coords, true);
   xhttp.send();
   setTimeout(function() {
     populateButton.enable();
