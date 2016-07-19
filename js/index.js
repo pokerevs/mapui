@@ -8,6 +8,7 @@ var map = new L.Map('map', {
     }
 });
 var hash = new L.Hash(map);
+L.control.zoomLabel().addTo(map);
 L.tileLayer.provider('OpenStreetMap.Mapnik', {retina: true}).addTo(map);
 
 var credctrl = L.controlCredits({
