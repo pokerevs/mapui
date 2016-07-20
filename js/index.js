@@ -28,6 +28,8 @@ var map = L.map("map", {
 
 var filters = document.getElementById("filters");
 
+var disappearanceTimer;
+
 
 // Map layer
 
@@ -50,15 +52,61 @@ var geoJsonOptions = {
     return feature.properties;
   },
   onEachFeature: function (feature, layer) {
-    layer.bindPopup(feature.properties.title);
+    feature = (typeof feature == "object" && feature != null ? feature : false);
     
-    layer.on("mouseover", function (e) {
-      this.openPopup();
-    });
-    
-    layer.on("mouseout", function (e) {
-      this.closePopup();
-    });
+    if(feature && typeof feature.properties == "object" && feature.properties != null) {
+      var prop = feature.properties,
+        willDisappearTs = false;
+      
+      if(prop.type == "wild" || prop.type == "nearby") {
+        var ts = prop.WillDisappear;
+        
+        if(typeof ts == "number" || (typeof ts == "string" && ts.length)) {
+          willDisappearTs = ts;
+        }
+      }
+      
+      layer.bindPopup(prop.title);
+      
+      layer.on("mouseover", function (e) {
+        this.openPopup();
+        
+        clearInterval(disappearanceTimer);
+        
+        if(willDisappearTs) {
+          var popup = this._popup;
+          
+          var updateText = function() {
+            var text = "",
+              secondsLeft = (willDisappearTs - new Date().getTime()) / 1000; // How long until Pokemon disappears (in seconds)
+            
+            if(secondsLeft > 60) {
+              var min = Math.round(secondsLeft / 60);
+              
+              text = min + " minute"+ (min !== 1 ? "s" : "") +" remaining";
+            } else {
+              var sec = Math.round(secondsLeft);
+              
+              text = sec + " second"+ (sec !== 1 ? "s" : "") +" remaining";
+            }
+            
+            popup.setContent(prop.title + ": "+ text);
+          }
+          
+          updateText();
+          
+          disappearanceTimer = setInterval(function() {
+            updateText();
+          }, 1000);
+        }
+      });
+      
+      layer.on("mouseout", function (e) {
+        this.closePopup();
+        
+        clearInterval(disappearanceTimer);
+      });
+    }
   }
 };
 
