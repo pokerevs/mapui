@@ -68,9 +68,17 @@ var geoJsonOptions = {
       
       layer.bindPopup(prop.title);
       
-      layer.on("mouseover", function (e) {
+      layer.on("mouseover", function(e) {
         this.openPopup();
+      });
+      
+      layer.on("mouseout", function(e) {
+        this.closePopup();
         
+        clearInterval(disappearanceTimer);
+      });
+      
+      layer.on("popupopen", function(e) {
         clearInterval(disappearanceTimer);
         
         if(willDisappearTs) {
@@ -99,12 +107,6 @@ var geoJsonOptions = {
             updateText();
           }, 1000);
         }
-      });
-      
-      layer.on("mouseout", function (e) {
-        this.closePopup();
-        
-        clearInterval(disappearanceTimer);
       });
     }
   }
