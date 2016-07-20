@@ -6,6 +6,10 @@ if(typeof endpoint_name == "undefined") {
   console.warn("add js/env.js that contains 'var endpoint_name = \"[your endpoint]\";'");
 }
 
+if(typeof api_endpoint == "undefined") {
+  console.warn("add js/env.js that contains 'var api_endpoint = \"[your endpoint]\";'");
+}
+
 
 // Global variables
 
@@ -95,6 +99,12 @@ filters.onclick = function() {
   gj.onMoveEnd();
 };
 
+var credctrl = L.controlCredits({
+  image: "./img/logo-40.png",
+  link: "http://pokerev.r3v3rs3.net/",
+  text: "Pokemon Global Map <br/>by PokeRevs"
+}).addTo(map);
+
 
 // Center map
 
@@ -127,8 +137,8 @@ function pokemonIcon(num) {
     return new L.Icon({
       iconUrl: "img/sprites/"+ num + (retina ? "@2x" : "") +".png",
       iconSize: [32, 32],
-      iconAnchor: [32, 32],
-      popupAnchor: [0, -48]
+      iconAnchor: [16, 16],
+      popupAnchor: [0, -32]
     });
   }
   
@@ -207,7 +217,13 @@ function markerStyle(f, latlon) {
 }
 
 
-// Other functions
+// Populate button
+
+var populateResponse = L.control.window(map, {
+  title: "Server response",
+  content: "",
+  position: "bottomLeft"
+});
 
 var populateButton = L.easyButton("<span>Populate this area</span>", function populateCallback() {
   populateButton.disable();
