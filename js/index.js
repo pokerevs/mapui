@@ -294,5 +294,25 @@ var populateButton = L.easyButton("<span>Populate this area</span>", function po
   setTimeout(function() {
     populateResponse.hide();
     populateButton.enable();
-  }, 1000 * 20);
+  }, 1000 * 5);
+}, {position: "bottomleft"}).addTo(map);
+var populateButton = L.easyButton("<span>Pokemon Only this area</span>", function populateCallback() {
+  populateButton.disable();
+
+  var xhttp = new XMLHttpRequest(),
+    curhash = window.location.hash,
+    coords = curhash.substring(curhash.indexOf("/"));
+
+  xhttp.onreadystatechange = function() {
+    if (xhttp.readyState == XMLHttpRequest.DONE) {
+      populateResponse.content(xhttp.responseText).show();
+    }
+  }
+
+  xhttp.open("GET", api_endpoint + "addPokemon" + coords, true);
+  xhttp.send();
+  setTimeout(function() {
+    populateResponse.hide();
+    populateButton.enable();
+  }, 1000 * 5);
 }, {position: "bottomleft"}).addTo(map);
