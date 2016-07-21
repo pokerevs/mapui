@@ -128,6 +128,7 @@ var uGeoJsonOptions = {
   endpoint: (typeof endpoint_name != "undefined" ? endpoint_name : ""),
   debug: debug,
   usebbox: true,
+  light: true,
   after: function(geojson) {
     if(!initialViewSet && geojson.features.length > 0) { // If location data wasn't available, or access was denied
       map.fitBounds(gj.getBounds(), {
