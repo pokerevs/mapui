@@ -38,6 +38,17 @@ L.tileLayer.provider("OpenStreetMap.Mapnik", {
 }).addTo(map);
 
 
+// "Zoom in further" message
+
+map.on("zoomend", function(e) {
+  if(map.getZoom() < 10){
+    document.getElementById("highzoom").style.visibility = "initial";
+  } else {
+    document.getElementById("highzoom").style.visibility = "hidden";
+  }
+});
+
+
 // Data layer
 
 var geoJsonOptions = {
@@ -116,14 +127,6 @@ var markerOptions = {
   disableClusteringAtZoom: 16
 };
 
-function toggleHighZoomMessage() {
-  if(map.getZoom() < 10){
-    document.getElementById("highzoom").style.visibility = "initial";
-  } else {
-    document.getElementById("highzoom").style.visibility = "hidden";
-  }
-}
-
 var uGeoJsonOptions = {
   endpoint: (typeof endpoint_name != "undefined" ? endpoint_name : ""),
   debug: debug,
@@ -137,8 +140,6 @@ var uGeoJsonOptions = {
       
       initialViewSet = true;
     }
-    
-    toggleHighZoomMessage();
   },
   maxRequests: 2,
   // pollTime: 1000 * 60 * 5 //Considering refreshing data every 5 minutes

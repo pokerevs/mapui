@@ -76,9 +76,19 @@ body {
   margin-top: -50px;
   text-align: center;
   visibility: hidden;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: moz-none;
+  -ms-user-select: none;
+  user-select: none;
+  pointer-events: none;
 }
   #highzoom h1 {
     font-weight: 500;
+  }
+  #highzoom a {
+    pointer-events: auto;
   }
 
 .leaflet-bar button,
