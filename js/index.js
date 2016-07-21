@@ -186,9 +186,9 @@ function pokemonIcon(num) {
   if(num !== false && isFinite(num)) {
     return new L.Icon({
       iconUrl: "img/sprites/"+ num + (retina ? "@2x" : "") +".png",
-      iconSize: [32, 32],
-      iconAnchor: [16, 16],
-      popupAnchor: [0, -32]
+      iconSize: [42, 42],
+      iconAnchor: [24, 24],
+      popupAnchor: [-3, -58]
     });
   }
   
