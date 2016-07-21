@@ -6,6 +6,7 @@ L.UGeoJSONLayer = L.GeoJSON.extend({
       endpoint: "-1",
       parameters: {},
       maxRequests: 5,
+      minZoom: 0,
       pollTime:0,
       once: false,
       after: function(data){}
@@ -31,6 +32,11 @@ L.UGeoJSONLayer = L.GeoJSON.extend({
   },
 
   onMoveEnd: function () {
+    if (this.options.minZoom){
+     if (this._map.getZoom() < this.options.minZoom){
+        return
+     }
+    }
     if (this.options.debug) {
       console.debug("load Data");
     }

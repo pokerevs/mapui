@@ -9,6 +9,15 @@ if(typeof endpoint_name == "undefined") {
 if(typeof api_endpoint == "undefined") {
   console.warn("add js/env.js that contains 'var api_endpoint = \"[your endpoint]\";'");
 }
+if(typeof pokemonTimeout == "undefined") {
+  console.warn("add js/env.js that contains 'var pokemonTimeout = \"[your timeout]\";'");
+}
+if(typeof populateTimeout == "undefined") {
+  console.warn("add js/env.js that contains 'var populateTimeout = \"[your timeout]\";'");
+}
+if(typeof zoomMinimum == "undefined") {
+  console.warn("add js/env.js that contains 'var zoomMinimum = \"[your minZoom to populate]\";'");
+}
 
 
 // Global variables
@@ -41,7 +50,7 @@ L.tileLayer.provider("OpenStreetMap.Mapnik", {
 // "Zoom in further" message
 
 map.on("zoomend", function(e) {
-  if(map.getZoom() < 10){
+  if(map.getZoom() < zoomMinimum){
     document.getElementById("highzoom").style.visibility = "initial";
   } else {
     document.getElementById("highzoom").style.visibility = "hidden";
@@ -132,6 +141,7 @@ var uGeoJsonOptions = {
   debug: debug,
   usebbox: true,
   light: true,
+  minZoom: zoomMinimum,
   after: function(geojson) {
     if(!initialViewSet && geojson.features.length > 0) { // If location data wasn't available, or access was denied
       map.fitBounds(gj.getBounds(), {
@@ -295,7 +305,7 @@ var populateButton = L.easyButton("<span>Populate this area</span>", function po
   setTimeout(function() {
     populateResponse.hide();
     populateButton.enable();
-  }, 1000 * 5);
+  }, 1000 * populateTimeout);
 }, {position: "bottomleft"}).addTo(map);
 var populateButton = L.easyButton("<span>Pokemon Only this area</span>", function populateCallback() {
   populateButton.disable();
@@ -315,5 +325,5 @@ var populateButton = L.easyButton("<span>Pokemon Only this area</span>", functio
   setTimeout(function() {
     populateResponse.hide();
     populateButton.enable();
-  }, 1000 * 5);
+  }, 1000 * pokemonTimeout);
 }, {position: "bottomleft"}).addTo(map);
