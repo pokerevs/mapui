@@ -307,8 +307,8 @@ var populateButton = L.easyButton("<span>Populate this area</span>", function po
     populateButton.enable();
   }, 1000 * populateTimeout);
 }, {position: "bottomleft"}).addTo(map);
-var populateButton = L.easyButton("<span>Pokemon Only this area</span>", function populateCallback() {
-  populateButton.disable();
+var populateButton2 = L.easyButton("<span>Pokemon Only this area</span>", function populateCallback() {
+  populateButton2.disable();
 
   var xhttp = new XMLHttpRequest(),
     curhash = window.location.hash,
@@ -324,6 +324,6 @@ var populateButton = L.easyButton("<span>Pokemon Only this area</span>", functio
   xhttp.send();
   setTimeout(function() {
     populateResponse.hide();
-    populateButton.enable();
+    populateButton2.enable();
   }, 1000 * pokemonTimeout);
 }, {position: "bottomleft"}).addTo(map);
