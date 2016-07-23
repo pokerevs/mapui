@@ -186,9 +186,10 @@ function gymIcon(color) {
   
   return new L.Icon({
     iconUrl: "img/arena_"+ color +".png",
-    iconSize: [45, 48], // Size of the icon
-    iconAnchor: [22, 48], // Point of the icon which will correspond to marker's location
-    popupAnchor: [-3, -58] // Point from which the popup should open relative to the iconAnchor
+    iconRetinaUrl: "img/arena_"+ color +"-2x.png",
+    iconSize: [45, 46], // Size of the icon
+    iconAnchor: [23, 45], // Point of the icon which will correspond to marker's location
+    popupAnchor: [-3, -50] // Point from which the popup should open relative to the iconAnchor
   });
 }
 
@@ -212,9 +213,10 @@ function pokestopIcon(lure) {
   
   return new L.Icon({
     iconUrl: "img/pokestop"+ (lure ? "pink" : "") +".png",
-    iconSize: [32, 48],
-    iconAnchor: [16, 48],
-    popupAnchor: [-3, -58]
+    iconRetinaUrl: "img/pokestop"+ (lure ? "pink" : "") +"-2x.png",
+    iconSize: [26, 39],
+    iconAnchor: [15, 39],
+    popupAnchor: [-3, -44]
   });
 }
 
